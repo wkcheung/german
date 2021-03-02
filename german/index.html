@@ -1,0 +1,546 @@
+<html lang="de">
+
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .bottomButtons {
+            position: fixed;
+            bottom: 20px;
+            z-index: 99;
+            right: 30px;
+        }
+
+        .bottomButtons button {
+            font-size: 12px;
+            border: none;
+            outline: none;
+            background-color: gray;
+            color: white;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 4px;
+        }
+
+        .bottomButton:hover {
+            background-color: #555;
+        }
+
+        #goToTopButton {
+            display: none;
+        }
+    </style>
+    <style>
+        #toc_container {
+            background: #f9f9f9 none repeat scroll 0 0;
+            border: 1px solid #aaa;
+            display: table;
+            font-size: 95%;
+            margin-bottom: 1em;
+            padding: 20px;
+            width: auto;
+        }
+
+        .toc_title {
+            font-weight: 700;
+            text-align: center;
+        }
+
+        #toc_container li,
+        #toc_container ul,
+        #toc_container ul li {
+            list-style: outside none none !important;
+        }
+
+        .german {
+            cursor: pointer;
+        }
+
+        textarea {
+            width: 425px;
+            height: 60px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bottomButtons">
+        <button onclick="window.document.utterRate += 0.2" id="speedUp" class="bottomButton">Speed+</button>
+        <button onclick="window.document.utterRate -= 0.2" id="speedDown" class="bottomButton">Speed-</button>
+        <button onclick="topFunction()" id="goToTopButton" class="bottomButton">Top</button>
+    </div>
+
+    <h1>Deutsche</h1>
+    <div id="toc_container">
+        <p class="toc_title">Contents</p>
+        <ul class="toc_list">
+            <li><a href="#vocabsSection">1 Vocabs</a>
+                <ul>
+                    <li><a href="#vocabsSection_objects">1.1 Objects</a></li>
+                    <li><a href="#vocabsSection_hobbys">1.2 Hobbys</a></li>
+                </ul>
+            </li>
+            <li><a href="#readSection">Read</a></li>
+        </ul>
+    </div>
+
+    <h2 id="vocabsSection">Vocabs</h2>
+    <div id="vocabContainer">
+        <h3 id="vocabsSection_objects">Objects</h3>
+        <table id="objectTable">
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the fountain pen</td>
+                <td class="german">der Füller</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the fountain pens</td>
+                <td class="german">die Füller</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the CD-player</td>
+                <td class="german">der CD player</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the CD players</td>
+                <td class="german">die CD player</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the computer</td>
+                <td class="german">der Computer</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the computers</td>
+                <td class="german">die Computer</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>The Videorecorder</td>
+                <td class="german">der Videorekorder</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>The Videorecorders</td>
+                <td class="german">die Videorekorder</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the Mixer</td>
+                <td class="german">der Mixer</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the mixers</td>
+                <td class="german">die Mixer</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the board</td>
+                <td class="german">die Tafel</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the boards</td>
+                <td class="german">die Tafeln</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the lamp</td>
+                <td class="german">die Lampe</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the lamps</td>
+                <td class="german">die Lampen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the bag</td>
+                <td class="german">die Tasche</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the bags</td>
+                <td class="german">die Taschen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the rule</td>
+                <td class="german">die Regel</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the rules</td>
+                <td class="german">die Regeln</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the banana</td>
+                <td class="german">die Banana</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the bananas</td>
+                <td class="german">die Bananan</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the learning poster</td>
+                <td class="german">das Lernplakat</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the learning posters</td>
+                <td class="german">die Lernplakat</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the table</td>
+                <td class="german">der Tisch</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the tables</td>
+                <td class="german">die Tische</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the chair</td>
+                <td class="german">der Stuhl</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the chairs</td>
+                <td class="german">die Stühle</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the sponge</td>
+                <td class="german">der Schwamm</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the sponges</td>
+                <td class="german">die Schwämm</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the notebook</td>
+                <td class="german">das Heft</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the notebooks</td>
+                <td class="german">die Hefte</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the eraser</td>
+                <td class="german">der Radiergummi</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the rubbers</td>
+                <td class="german">die Radiergummis</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>ballpen</td>
+                <td class="german">der Kuli</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the pens</td>
+                <td class="german">die Kulis</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>The cell phone</td>
+                <td class="german">das Handy</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the cellphones</td>
+                <td class="german">die Handys</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the camera</td>
+                <td class="german">die Kamera</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the cameras</td>
+                <td class="german">die Kameras</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the cafe</td>
+                <td class="german">das Cafe</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>The cafes</td>
+                <td class="german">die Cafes</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the car</td>
+                <td class="german">das Auto</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the cars</td>
+                <td class="german">die Autos</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the eagle owl</td>
+                <td class="german">der Uhu</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the eagle owls</td>
+                <td class="german">die Uhus</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the book</td>
+                <td class="german">das Buch</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the books</td>
+                <td class="german">die Bücher</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the teacher</td>
+                <td class="german">der Lehrer</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>the teacher (f)</td>
+                <td class="german">die Lehrerin</td>
+            </tr>
+        </table>
+
+        <h3 id="vocabsSection_hobbys">Hobbys</h3>
+        <div class="german" style="color: blue;">Was sind deine Hobbys?</div>
+        <div class="german">Meine Hobbys sind Lesen und Musik hören.</div>
+        <table id="hobbyTable">
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Read</td>
+                <td class="german">Lesen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Listen to music</td>
+                <td class="german">Musik hören</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Go to the Cinema</td>
+                <td class="german">Ins Kino gehen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Watch DVD</td>
+                <td class="german">DVDs sehen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Taking photos</td>
+                <td class="german">Fotografieren</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Paint</td>
+                <td class="german">Malen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Draw</td>
+                <td class="german">Zeichnen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Learn German</td>
+                <td class="german">Deutsch lernen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Learn languages</td>
+                <td class="german">Sprachen lernen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Play piano</td>
+                <td class="german">Klavier spielen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Play football</td>
+                <td class="german">Fußball spielen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Play tennis</td>
+                <td class="german">Tennis spielen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Play badminton</td>
+                <td class="german">Federball spielen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Play golf</td>
+                <td class="german">Golf spielen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Jog</td>
+                <td class="german">Joggen</td>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Swim</td>
+                <td class="german">Schwimmen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Diving</td>
+                <td class="german">Tauchen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Hike</td>
+                <td class="german">Wandern</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Travel</td>
+                <td class="german">Reisen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Grill</td>
+                <td class="german">Grillen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Cook</td>
+                <td class="german">Kochen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Play chess</td>
+                <td class="german">Schach spielen</td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>Play Mahjong</td>
+                <td class="german">Mahjong spielen</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        $("#vocabContainer .hideGermanToggle").click(function () {
+            $("#vocabContainer .german").toggle();
+        })
+    </script>
+
+    <h2 id="readSection">Read</h2>
+    <form>
+        <textarea id="inputText"></textarea>
+        <input type="submit" value="Submit">
+    </form>
+    <button onclick="document.getElementById('inputText').value += 'ä'">ä</button>
+    <button onclick="document.getElementById('inputText').value += 'ö'">ö</button>
+    <button onclick="document.getElementById('inputText').value += 'ü'">ü</button>
+    <button onclick="document.getElementById('inputText').value += 'ß'">ß</button>
+    <script>
+        var synth = window.speechSynthesis;
+
+        var inputForm = document.querySelector('form');
+        var inputTxt = document.getElementById('inputText');
+
+        var voices = synth.getVoices();
+
+
+        inputForm.onsubmit = function (event) {
+            event.preventDefault();
+
+            var utterThis = new SpeechSynthesisUtterance(inputTxt.value);
+            utterThis.rate = 0.5; // 0.1 to 10
+            synth.speak(utterThis);
+            inputTxt.blur();
+        }
+    </script>
+
+    <script>
+        $(".german").click(function () {
+            const utterThis = new SpeechSynthesisUtterance(this.innerText ? this.innerText : this.value);
+            utterThis.rate = window.document.utterRate;
+            window.speechSynthesis.speak(utterThis);
+        })
+    </script>
+    <script>
+        var goToTopButton = document.getElementById("goToTopButton");
+
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                goToTopButton.style.display = "inline-block";
+            } else {
+                goToTopButton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            window.document.utterRate = 0.5;
+        })
+    </script>
+</body>
+
+</html>
