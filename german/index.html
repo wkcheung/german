@@ -76,28 +76,144 @@
 
 <body>
     <div class="bottomButtons">
+        <button onclick="toggleReadWholeSentence()" id="readWholeSentenceToggle" class="bottomButton">Read sentence</button>
         <button onclick="window.document.utterRate += 0.2" id="speedUp" class="bottomButton">Speed+</button>
         <button onclick="window.document.utterRate -= 0.2" id="speedDown" class="bottomButton">Speed-</button>
         <button onclick="topFunction()" id="goToTopButton" class="bottomButton">Top</button>
     </div>
 
-    <h1>Deutsche</h1>
+    <h1>Deutsch</h1>
     <div id="toc_container">
         <p class="toc_title">Contents</p>
         <ul class="toc_list">
-            <li><a href="#vocabsSection">1 Vocabs</a>
+            <li><a href="#dialogueSection">Dialogue</a></li>
+            <li><a href="#vocabsSection">Vocabs</a>
                 <ul>
-                    <li><a href="#vocabsSection_objects">1.1 Objects</a></li>
-                    <li><a href="#vocabsSection_hobbys">1.2 Hobbys</a></li>
+                    <li><a href="#vocabsSection_objects">Objects</a></li>
+                    <li><a href="#vocabsSection_hobbies">Hobbys</a></li>
                 </ul>
             </li>
             <li><a href="#readSection">Read</a></li>
         </ul>
     </div>
 
+    <h2 id="dialogueSection">Dialogue</h2>
+    <div id="dialogueContainer">
+        <table>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>
+                    <div style="color: blue;">Hello! Good morning! Good afternoon! Good evening!</div>
+                    <div style="color: red;">What is your name?</div>
+                    <div style="color: blue;">My name is Amets Cheung.</div>
+                    <div style="color: red;">Nice to meet you!</div>
+                    <div style="color: blue;">Nice to meet you, too!</div>
+                    <div style="color: red;">And where are you from?</div>
+                    <div style="color: blue;">I am from Hong Kong. And you?</div>
+                    <div style="color: red;">I am from Hong Kong, too!</div>
+                    <div style="color: blue;">I see!</div>
+                    <div style="color: red;">And where do you live?</div>
+                    <div style="color: blue;">I live in Shatin. And you?</div>
+                    <div style="color: red;">I live in Tai Kok Tsui.</div>
+                    <div style="color: blue;">And who is this?</div>
+                    <div style="color: red;">This is Mr. Li. He comes from...<br>This is Miss Chan. She comes from...</div>
+                    <div style="color: blue;">All is clear! Good bye!</div>
+                </td>
+                <td>
+                    <div class="german" style="color: blue;">Hallo! Guten Morgen! Guten Tag! Guten Abend!</div>
+                    <div class="german" style="color: red;">Wie ist Ihr Name? Wie heißen Sie?</div>
+                    <div class="german" style="color: blue;">Meine Name ist Amets Cheung. Ich heiße Amets Cheung.</div>
+                    <div class="german" style="color: red;">Freut mich!</div>
+                    <div class="german" style="color: blue;">Freut mich auch!</div>
+                    <div class="german" style="color: red;">Und woher kommen Sie?</div>
+                    <div class="german" style="color: blue;">Ich komme aus Hong Kong. Und Sie?</div>
+                    <div class="german" style="color: red;">Ich komme auch aus Hong Kong!</div>
+                    <div class="german" style="color: blue;">Ach, so!</div>
+                    <div class="german" style="color: red;">Und wo wohnen Sie?</div>
+                    <div class="german" style="color: blue;">Ich wohne in Shatin. Und Sie?</div>
+                    <div class="german" style="color: red;">Ich wohne in Tai Kok Tsui.</div>
+                    <div class="german" style="color: blue;">Und wer ist das?</div>
+                    <div class="german" style="color: red;">Das ist Herr Li. Er kommt aus...</div>
+                    <div class="german" style="color: red;">Das ist Frau Chan. Sie kommt aus...</div>
+                    <div class="german" style="color: blue;">Alles klar! Auf Wiedersehen! Tschüß!</div>
+                </td>
+            </tr>
+            <tr>
+                <td><button class="hideGermanToggle">Toggle German</button></td>
+                <td>
+                    <div style="color: blue;">How is it going for you?</div>
+                    <div style="color: red;">Thank you, very good. And you?</div>
+                    <div style="color: red;">Thank you, I'm fine. And you?</div>
+                    <div style="color: red;">Not so good.</div>
+                    <div style="color: blue;">Why then?</div>
+                    <div style="color: red;">I am very ill.</div>
+                    <div style="color: red;">I am very tired.</div>
+                    <div style="color: red;">I have too much work.</div>
+                </td>
+                <td>
+                    <div class="german" style="color: blue;">Wie geht es Ihnen?</div>
+                    <div class="german" style="color: red;">Danke, sehr gut! Und Ihnen?</div>
+                    <div class="german" style="color: red;">Danke, es geht! Und Ihnen?</div>
+                    <div class="german" style="color: red;">Nicht so gut!</div>
+                    <div class="german" style="color: blue;">Warum denn?</div>
+                    <div class="german" style="color: red;">Ich bin (total) krank.</div>
+                    <div class="german" style="color: red;">Ich bin (total) müde.</div>
+                    <div class="german" style="color: red;">Ich habe zu viel Arbeit.</div>
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+
     <h2 id="vocabsSection">Vocabs</h2>
     <div id="vocabContainer">
         <h3 id="vocabsSection_objects">Objects</h3>
+        <table>
+            <tr style="color: red;">
+                <th class="german">Wie heißt das auf Deutsch?</th>
+                <th class="german">Was ist das?</th>
+            </tr>
+            <tr>
+                <td class="german" style="color: blue;">der Stuhl</td>
+                <td class="german"><span style="color: orange;">Nein.</span> Das ist <span style="color: orange;">k</span>ein Stuhl.</td>
+            </tr>
+            <tr>
+                <td class="german" style="color: blue;">die Kaffeemaschine</td>
+                <td class="german"><span style="color: orange;">Nein.</span> Das ist <span style="color: orange;">k</span>eine Kaffeemaschine.</td>
+            </tr>
+            <tr>
+                <td class="german" style="color: blue;">das Handy</td>
+                <td class="german"><span style="color: orange;">Nein.</span> Das ist <span style="color: orange;">k</span>ein Handy.</td>
+            </tr>
+            <tr>
+                <td class="german" style="color: blue;">die Stühle</td>
+                <td class="german"><span style="color: orange;">Nein.</span> Das ist <span style="color: orange;">k</span>ein Stühle.<br><span
+                        style="color: orange;">Das sind keine Stühle.</span></td>
+            </tr>
+        </table>
+        <br>
+        
+        <table>
+            <tr style="color: blue;">
+                <th class="german">Ist das eine Kamera?</th>
+                <th class="german">Sind das Radios?</th>
+            </tr>
+            <tr>
+                <td class="german">
+                    <div>Nein, das ist keine Kamera.</div>
+                    <div>Das ist eine Lampe.</div>
+                </td>
+                <td class="german">
+                    <div>Nein, das sind keine Radios.</div>
+                    <div>Das sine Lampen.</div>
+                </td>
+            </tr>
+        </table>
+        <br><br>
+
+
+        <div class="german">Meine Hobbys sind Lesen und Musik hören.</div>
         <table id="objectTable">
             <tr>
                 <td><button class="hideGermanToggle">Toggle German</button></td>
@@ -152,6 +268,7 @@
             <tr>
                 <td></td>
                 <td></td>
+                <td class="german"></td>
             </tr>
             <tr>
                 <td><button class="hideGermanToggle">Toggle German</button></td>
@@ -206,6 +323,7 @@
             <tr>
                 <td></td>
                 <td></td>
+                <td class="german"></td>
             </tr>
             <tr>
                 <td><button class="hideGermanToggle">Toggle German</button></td>
@@ -260,6 +378,7 @@
             <tr>
                 <td></td>
                 <td></td>
+                <td class="german"></td>
             </tr>
             <tr>
                 <td><button class="hideGermanToggle">Toggle German</button></td>
@@ -334,6 +453,7 @@
             <tr>
                 <td></td>
                 <td></td>
+                <td class="german"></td>
             </tr>
             <tr>
                 <td><button class="hideGermanToggle">Toggle German</button></td>
@@ -357,7 +477,7 @@
             </tr>
         </table>
 
-        <h3 id="vocabsSection_hobbys">Hobbys</h3>
+        <h3 id="vocabsSection_hobbies">Hobbys</h3>
         <div class="german" style="color: blue;">Was sind deine Hobbys?</div>
         <div class="german">Meine Hobbys sind Lesen und Musik hören.</div>
         <table id="hobbyTable">
@@ -476,10 +596,32 @@
                 <td class="german">Mahjong spielen</td>
             </tr>
         </table>
+
+        <h3 id="vocabsSection_languages" class="german">Sprechen</h3>
+        <div class="german" style="color: blue;">Sprechen Sie Englisch?</div>
+        <div class="german" style="color: blue;">Sprichst du Englisch?</div>
+        <div class="german">Nein, ich spreche kein Englisch.</div>
+        <div class="german">Ja, ich spreche <span style="color: red">ein bißchen</span> Englisch.</div>
+        <div><span class="german" style="color: red">ein bißchen</span> / <span class="german" style="color: red">etwas</span> / <span class="german" style="color: red">ziemlich</span> / <span class="german" style="color: red">geht</span> / <span class="german" style="color: red">sehr gut</span> / <span class="german" style="color: red">super</span> / <span class="german" style="color: red">perferkt</span></div>
+        <ul>
+            <li class="german">Deutsch</li>
+            <li class="german">Engl<span style="color: blue;">isch</span></li>
+            <li class="german">Span<span style="color: blue;">isch</span></li>
+            <li class="german">Italien<span style="color: blue;">isch</span></li>
+            <li class="german">Japan<span style="color: blue;">isch</span></li>
+            <li class="german">Korean<span style="color: blue;">isch</span></li>
+            <li class="german">Arab<span style="color: blue;">isch</span></li>
+            <li class="german">Kantone<span style="color: orange;">sisch</span></li>
+            <li class="german">Chine<span style="color: orange;">sisch</span></li>
+            <li class="german">Franzö<span style="color: orange;">sisch</span></li>
+            <li class="german">Portugie<span style="color: orange;">sisch</span></li>
+            <li class="german">Russisch</li>
+        </ul>
+        
     </div>
     <script>
-        $("#vocabContainer .hideGermanToggle").click(function () {
-            $("#vocabContainer .german").toggle();
+        $(".hideGermanToggle").click(function () {
+            $(this).parents('table').find('.german').toggle();
         })
     </script>
 
@@ -512,13 +654,36 @@
     </script>
 
     <script>
-        $(".german").click(function () {
-            const utterThis = new SpeechSynthesisUtterance(this.innerText ? this.innerText : this.value);
-            utterThis.rate = window.document.utterRate;
-            window.speechSynthesis.speak(utterThis);
-        })
-    </script>
-    <script>
+        function setGermanEventHandler(isReadWholeSentence) {
+            if (isReadWholeSentence) {
+                $(".german").off("click").click(function () {
+                    const utterThis = new SpeechSynthesisUtterance(this.innerText ? this.innerText : this.value);
+                    utterThis.rate = window.document.utterRate;
+                    window.speechSynthesis.speak(utterThis);
+                })
+            } else {
+                $(".german").off("click").click(function(e) {
+                    var s = window.getSelection();
+                    s.modify('extend', 'backward', 'word');
+                    var b = s.toString();
+
+                    s.modify('extend', 'forward', 'word');
+                    var a = s.toString();
+                    s.modify('move', 'forward', 'character');
+
+                    const utterThis = new SpeechSynthesisUtterance(b + a);
+                    utterThis.rate = window.document.utterRate;
+                    window.speechSynthesis.speak(utterThis);
+                });
+            }
+        }
+
+        function toggleReadWholeSentence() {
+            window.document.readWholeSentence = !window.document.readWholeSentence;
+            $('#readWholeSentenceToggle').html(window.document.readWholeSentence ? "Read sentence" : "Read word");
+            setGermanEventHandler(window.document.readWholeSentence);
+        }
+        
         var goToTopButton = document.getElementById("goToTopButton");
 
         window.onscroll = function () { scrollFunction() };
@@ -538,7 +703,9 @@
     </script>
     <script>
         $(document).ready(function () {
+            window.document.readWholeSentence = true;
             window.document.utterRate = 0.5;
+            setGermanEventHandler(true);
         })
     </script>
 </body>
