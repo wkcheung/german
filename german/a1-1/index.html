@@ -77,8 +77,8 @@
 <body>
     <div class="bottomButtons">
         <button onclick="toggleReadWholeSentence()" id="readWholeSentenceToggle" class="bottomButton">Read sentence</button>
-        <button onclick="window.document.utterRate += 0.2" id="speedUp" class="bottomButton">Speed+</button>
-        <button onclick="window.document.utterRate -= 0.2" id="speedDown" class="bottomButton">Speed-</button>
+        <button onclick="increaseSpeed()" id="speedUp" class="bottomButton">Speed+</button>
+        <button onclick="decreaseSpeed()" id="speedDown" class="bottomButton">Speed-</button>
         <button onclick="topFunction()" id="goToTopButton" class="bottomButton">Top</button>
     </div>
 
@@ -597,12 +597,23 @@
             </tr>
         </table>
 
-        <h3 id="vocabsSection_languages" class="german">Sprechen</h3>
+        <h3 id="vocabsSection_languages" class="german">Sprachen</h3>
         <div class="german" style="color: blue;">Sprechen Sie Englisch?</div>
         <div class="german" style="color: blue;">Sprichst du Englisch?</div>
         <div class="german">Nein, ich spreche kein Englisch.</div>
         <div class="german">Ja, ich spreche <span style="color: red">ein bißchen</span> Englisch.</div>
-        <div><span class="german" style="color: red">ein bißchen</span> / <span class="german" style="color: red">etwas</span> / <span class="german" style="color: red">ziemlich</span> / <span class="german" style="color: red">geht</span> / <span class="german" style="color: red">sehr gut</span> / <span class="german" style="color: red">super</span> / <span class="german" style="color: red">perferkt</span></div>
+        <div><span class="german" style="color: red">ein bißchen</span> / <span class="german" style="color: red">etwas</span> / <span class="german" style="color: red">ziemlich</span> / <span class="german" style="color: red">gut</span> / <span class="german" style="color: red">sehr gut</span> / <span class="german" style="color: red">super</span> / <span class="german" style="color: red">perferkt</span></div>
+        <br>
+        <div class="german" style="color: blue;">Welche Sprachen sprichst du (noch)?</div>
+        <div class="german">Ich spreche perfekt Kantonesisch, ..., ... und ...</div>
+        <div class="german" style="color: blue;">Kantonesisch, ist das schwer?</div>
+        <div class="german">Ja, Kantonesisch ist ziemlich schwer aber interessant.</div>
+        <div class="german">Nein, Kantonesisch ist <span style="color: red">nicht so / gah nicht</span> schwer.</div>
+        <br>
+        <div class="german" style="color: blue;">Wo lerust du Kantonesisch?</div>
+        <div class="german">Kantonesisch lerne ich <span style="color: red">zu Hause. Das ist meine Muttersprache</span>.</div>
+        <div><span class="german" style="color: red">in der Schule</span> / <span class="german" style="color: red">in der Uni / Universität</span> / <span class="german" style="color: red">bei DSLC in Mongkok</span> / <span class="german" style="color: red">in Korea</span></div>
+
         <ul>
             <li class="german">Deutsch</li>
             <li class="german">Engl<span style="color: blue;">isch</span></li>
@@ -626,8 +637,57 @@
     </script>
 
     <h2 id="readSection">Read</h2>
+    <table>
+        <tr>
+            <td class="german">A</td>
+            <td class="german">B</td>
+            <td class="german">C</td>
+            <td class="german">D</td>
+            <td class="german">E</td>
+            <td class="german">F</td>
+            <td class="german">G</td>
+        </tr>
+        <tr>
+            <td class="german">H</td>
+            <td class="german">I</td>
+            <td class="german">J</td>
+            <td class="german">K</td>
+            <td class="german">L</td>
+            <td class="german">M</td>
+            <td class="german">N</td>
+        </tr>
+        <tr>
+            <td class="german">O</td>
+            <td class="german">P</td>
+            <td class="german">Q</td>
+            <td class="german">R</td>
+            <td class="german">S</td>
+            <td class="german">T</td>
+            <td class="german">U</td>
+        </tr>
+        <tr>
+            <td class="german">V</td>
+            <td class="german">W</td>
+            <td class="german">X</td>
+            <td class="german">Y</td>
+            <td class="german">Z</td>
+            <td class="german"></td>
+            <td class="german"></td>
+        </tr>
+        <tr>
+            <td class="german">ä</td>
+            <td class="german">ö</td>
+            <td class="german">ü</td>
+            <td class="german">ß</td>
+            <td class="german"></td>
+            <td class="german"></td>
+            <td class="german"></td>
+        </tr>
+    </table>
+    <br>
     <form>
         <textarea id="inputText"></textarea>
+        <br>
         <input type="submit" value="Submit">
     </form>
     <button onclick="document.getElementById('inputText').value += 'ä'">ä</button>
@@ -647,7 +707,7 @@
             event.preventDefault();
 
             var utterThis = new SpeechSynthesisUtterance(inputTxt.value);
-            utterThis.rate = 0.5; // 0.1 to 10
+            utterThis.rate = window.document.utterRate;
             synth.speak(utterThis);
             inputTxt.blur();
         }
@@ -657,9 +717,12 @@
         function setGermanEventHandler(isReadWholeSentence) {
             if (isReadWholeSentence) {
                 $(".german").off("click").click(function () {
-                    const utterThis = new SpeechSynthesisUtterance(this.innerText ? this.innerText : this.value);
-                    utterThis.rate = window.document.utterRate;
-                    window.speechSynthesis.speak(utterThis);
+                    const sentence = this.innerText ? this.innerText : this.value;
+                    if (sentence) {
+                        const utterThis = new SpeechSynthesisUtterance(sentence);
+                        utterThis.rate = window.document.utterRate;
+                        window.speechSynthesis.speak(utterThis);
+                    }
                 })
             } else {
                 $(".german").off("click").click(function(e) {
@@ -671,9 +734,12 @@
                     var a = s.toString();
                     s.modify('move', 'forward', 'character');
 
-                    const utterThis = new SpeechSynthesisUtterance(b + a);
-                    utterThis.rate = window.document.utterRate;
-                    window.speechSynthesis.speak(utterThis);
+                    const word = b + a;
+                    if (word) {
+                        const utterThis = new SpeechSynthesisUtterance(word);
+                        utterThis.rate = window.document.utterRate;
+                        window.speechSynthesis.speak(utterThis);
+                    }
                 });
             }
         }
@@ -696,6 +762,26 @@
             }
         }
 
+        function decreaseSpeed() {
+            if (window.document.utterRate > 0.1) {
+                if (window.document.utterRate < 1) {
+                    window.document.utterRate -= 0.1;
+                } else {
+                    window.document.utterRate -= 1;
+                }
+            }
+        }
+
+        function increaseSpeed() {
+            if (window.document.utterRate < 10) {
+                if (window.document.utterRate > 1) {
+                    window.document.utterRate += 1;
+                } else {
+                    window.document.utterRate += 0.1;
+                }
+            }
+        }
+
         function topFunction() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
@@ -704,7 +790,7 @@
     <script>
         $(document).ready(function () {
             window.document.readWholeSentence = true;
-            window.document.utterRate = 0.5;
+            window.document.utterRate = 0.5; // 0.1 to 10
             setGermanEventHandler(true);
         })
     </script>
