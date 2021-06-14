@@ -1,0 +1,166 @@
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td><input id="newName" type="text" /></td>
+                <td><input id="newAmount" type="number" /></td>
+                <td><button id="addRow">+</button></td>
+            </tr>
+        </tfoot>
+    </table>
+    <br/>
+    <div id="sharedBillSection" style="display: none">
+        <b>Shared bill among %1 people by </b>
+        <select id="sharedBillSelect"></select><input id="newSharedAmount" type="number" /><button id="addSharedBill">+</button>
+    </div>
+
+    <div class="result"></div>
+
+    <script>
+        $(document).ready(function() {
+            window.billList = [];
+            $("#newName").focus();
+        })
+        function refreshDisplayRows() {
+            $("tbody").empty();
+            for (let i = 0; i < window.billList.length; i++) {
+                const bill = window.billList[i];
+                $("tbody").append(`<tr><td class="name">${bill.name}</td><td class="amount">${bill.amount}</td><td class="minus"><button onclick="removeDisplayRow(${i})">-</button></td></tr>`);
+            }
+            return refreshResult();
+        }
+        function removeDisplayRow(index) {
+            window.billList.splice(index, 1);
+            refreshDisplayRows();
+        }
+        function refreshResult() {
+            const resultMap = {};
+            for (let i = 0; i < window.billList.length; i++) {
+                const bill = window.billList[i];
+                if (!resultMap[bill.name]) {
+                    resultMap[bill.name] = { amount: 0 };
+                }
+                resultMap[bill.name].amount = resultMap[bill.name].amount + bill.amount;
+                resultMap[bill.name].target = {};
+            }
+            let resultStr = "<hr/>";
+            for (name1 in resultMap) {
+                const amount1 = resultMap[name1].amount;
+                resultStr += `${name1}: ${amount1} <br/>`;
+            }
+            const debitMap = {};
+            const creditMap = {};
+            for (name1 in resultMap) {
+                if (resultMap[name1].amount > 0) {
+                    creditMap[name1] = resultMap[name1].amount;
+                } else if (resultMap[name1].amount < 0) {
+                    debitMap[name1] = resultMap[name1].amount;
+                }
+            }
+            console.log(creditMap);
+            console.log(debitMap);
+            resultStr += '<hr/>';
+            for (creditor in creditMap) {
+                for (debitor in debitMap) {
+                    const creditAmount = creditMap[creditor];
+                    const debitAmount = debitMap[debitor];
+                    if (debitAmount < 0) {
+                        const shouldBePaidAmount = Math.min(Math.abs(creditAmount), Math.abs(debitAmount));
+                        creditMap[creditor] -= shouldBePaidAmount;
+                        debitMap[debitor] += shouldBePaidAmount;
+                        if (!resultMap[debitor].target[creditor]) {
+                            resultMap[debitor].target[creditor] = 0;
+                        }
+                        resultMap[debitor].target[creditor] -= shouldBePaidAmount;
+                    }
+                }
+            }
+            console.log(resultMap);
+            for (name in resultMap) {
+                if (Object.keys(resultMap[name].target).length > 0) {
+                    for (targetName in resultMap[name].target) {
+                        if (resultMap[name].target[targetName] != 0) {
+                            resultStr += `${name} ${resultMap[name].target[targetName]} to ${targetName}<br/>`;
+                        }
+                    }
+                }
+            }
+            resultStr += "<hr/>Amount cannot be collected:<br/>";
+            for (creditor in creditMap) {
+                resultStr += `${creditor}: ${creditMap[creditor]}<br/>`;
+            }
+            resultStr += "<hr/>Amount no one's collecting:<br/>";
+            for (debitor in debitMap) {
+                resultStr += `${debitor}: ${debitMap[debitor]}<br/>`;
+            }
+
+            $(".result").html(resultStr);
+            window.billResult = resultMap;
+            return resultMap;
+        }
+
+        function addSharedAmount() {
+            const biller = $("#sharedBillSelect").val();
+            const newSharedAmount = Number.parseFloat($("#newSharedAmount").val());
+            if (typeof(newSharedAmount) === "number" && isNaN(newSharedAmount) && newSharedAmount > 0) {
+                const sharedByPeople = Object.keys(window.billResult).length;
+                for (name in window.billResult) {
+                    if (name == biller) {
+                        window.billList.push({
+                            biller,
+                            amount: newSharedAmount / sharedByPeople * (sharedByPeople - 1),
+                        });
+                    } else {
+                        window.billList.push({
+                            name,
+                            amount: newSharedAmount / sharedByPeople,
+                        });
+                    }
+                }
+            }
+            refreshDisplayRows();
+        }
+
+        function addRow() {
+            const name = $("#newName").val();
+            const amount = Number.parseFloat($("#newAmount").val());
+            if (name && typeof(amount) === "number" && !isNaN(amount)) {
+                window.billList.push({
+                    name,
+                    amount,
+                });
+                const resultMap = refreshDisplayRows();
+                $("#sharedBillSelect").append(`<option>${name}</option>`);
+                console.log(resultMap)
+                $("#sharedBillSection b").text("Shared bill among %1 people by ".replace('%1', Object.keys(resultMap).length));
+            }
+            $("input").val(null);
+            // TODO feature: shared bill
+            // $("#sharedBillSection").show();
+        }
+
+        $("tfoot").keypress(function(event){
+            const keycode = (event.keyCode ? event.keyCode : event.which);
+            if(keycode == '13'){
+                addRow();
+                $("#newName").focus();
+            }
+        });
+
+        $("#addRow").click(addRow)
+    </script>
+</body>
